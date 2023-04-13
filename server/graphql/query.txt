@@ -1,0 +1,90 @@
+mutation createUser($userInput:userPayload!){
+  registerUser(userInput: $userInput){
+    _id
+    email
+    username
+  }
+}
+
+---
+query getAllUser {
+  users{
+    _id
+    username
+    email,
+    books{
+      _id,
+      bookName
+    }
+  }
+}
+---
+
+query getUserById{
+  user(_id:"643392db517a2863d1bd102e"){
+    _id
+    email
+  }
+}
+
+---
+
+mutation login($userSignin:userSigninInfo!){
+  user : loginUser(userSignin:$userSignin){
+    token
+    
+  }
+}
+----
+
+mutation bookCreate ($bookInput : bookPayload!){
+  createBook(bookInput :$bookInput){
+    _id,
+    bookName,
+    description,
+      userId  {
+    _id
+    username
+  }
+  }
+}
+
+----
+query bookByUser{
+  userBook(userId:"643392db517a2863d1bd102e"){
+    _id
+    bookName
+  }
+}
+----
+
+query getOneBook{
+  bookByID(_id:"64356c51bec2a534e4461412"){
+    _id
+    bookName
+    description
+  }
+}
+
+---
+
+query getAllQuotes{
+  books{
+    _id
+    bookName
+    description
+   userId  {
+    _id
+    username
+  }
+  }
+}
+
+----
+
+mutation update ($input : bookUpdate!, $bookId: ID!){
+  updateBook(_id: $bookId,input :$input){
+    bookName,
+    description
+  }
+}

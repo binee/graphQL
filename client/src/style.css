@@ -1,0 +1,22 @@
+.homepage-bgimage {
+    background: url('../../client/src/assets/shop.jpg');
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  #root {
+    background: url('../../client/src/assets/boy.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .page-bgimage {
+    background: url('../../client/src/assets/books1.jpg');
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
