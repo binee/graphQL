@@ -11,15 +11,15 @@ type LayoutProps = {
 
 const Layout  = ({children} : LayoutProps) => {
   const navigate = useNavigate()
-  const userInfo : any = useContext(Ctx);  
-  const userToken : string | null = localStorage.getItem('userToken');
+  let userInfo : any = useContext(Ctx);  
+  const userToken : string | null = userInfo?.token ? userInfo?.token : localStorage.getItem('userToken');
 
-  userInfo.token=userToken
-
+  console.log(userToken)
   if(userToken){
   const decoded = jwt_decode(userToken);
   userInfo.user = decoded;
   }
+  console.log(userInfo);
   return (
     <>
 
@@ -42,7 +42,7 @@ const Layout  = ({children} : LayoutProps) => {
           {userToken ?
         <><Nav.Link as={Link} to="/profile">Users Profile&nbsp; | </Nav.Link>
         <Nav.Link eventKey={2} to="/login" as={Link} onClick={()=>{
-                 localStorage.removeItem("userToken")
+                 localStorage.removeItem("userToken");userInfo=null
                  navigate('/login')
                }}>&nbsp;Logout</Nav.Link>
         </> :

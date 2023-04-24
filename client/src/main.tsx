@@ -4,7 +4,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import './style.css'
-import 'intro.js/introjs.css';
 const cache = new InMemoryCache();
 import { Steps, Hints } from 'intro.js-react';
 

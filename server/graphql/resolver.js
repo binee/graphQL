@@ -68,7 +68,7 @@ export const resolvers = {
       //   throw new Error("You must be logged in. Please Log in")  
       // }
       if (error) throw new Error(`Error in Book Creating ${error.details[0].message}` );
-      const newBook = new Bok({
+      const newBook = new Book({
         ...bookInput,
       });
       console.log(newBook)

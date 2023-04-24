@@ -10,6 +10,8 @@ import {
 } from "react-bootstrap";
 import { Controller, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import { Ctx } from "../context/Ctx";
+
 type LoginProps = {
     email : 'string',
     password : 'string'
@@ -17,8 +19,10 @@ type LoginProps = {
 import { useMutation } from "@apollo/client";
 import Utility from "../utlis";
 import { LOGIN_USER } from "../graphqlOperation/mutation";
+import { useContext } from "react";
 
 const Login = () => {
+  const userInfo : any = useContext(Ctx);  
   const {
     control,
     handleSubmit,
@@ -34,6 +38,7 @@ const navigate = useNavigate();
   const [login , {data, loading, error}] = useMutation(LOGIN_USER, {
     onCompleted(data){
       localStorage.setItem('userToken' , data?.loginUser.token )
+      userInfo.token = data?.loginUser.token;
         navigate('/')
     }
 })
@@ -79,7 +84,7 @@ const navigate = useNavigate();
               <div className="mb-3 mt-md-4">
                <h2>Login</h2>
                 <div className="mb-3">
-                  <Form noValidate onSubmit={handleSubmit(loginUser)}>
+                  <Form  data-testid="form" noValidate onSubmit={handleSubmit(loginUser)}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                       <Form.Label>Email</Form.Label>
                       <Controller
