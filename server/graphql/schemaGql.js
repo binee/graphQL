@@ -1,5 +1,4 @@
 import { gql } from "apollo-server";
-
 import Book from '../models/books.js'
 import User from '../models/users.js'
 

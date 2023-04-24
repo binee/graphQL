@@ -1,9 +1,9 @@
 import React from "react";
 import { Container, Row, Col, Card , ListGroup} from "react-bootstrap";
 
-const About: React.FC = () => {
+const About = () => {
   return (
-    <>
+    <> Featured
       <Container className="p-3">
         <Row className="d-flex justify-content-center">
           <Col>

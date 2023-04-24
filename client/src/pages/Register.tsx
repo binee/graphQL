@@ -20,7 +20,7 @@ interface RegisterProps {
     User: any;
   };
 }
-const Register: React.FC<RegisterProps> = () => {
+const Register  = () => {
   const {
     control,
     handleSubmit,
@@ -37,7 +37,7 @@ const Register: React.FC<RegisterProps> = () => {
   const navigate = useNavigate();
   const [registerUser, { data, loading, error }] = useMutation(REGISTER_USER);
 
-  const registerNewUser = (data: any) => {
+  const registerNewUser = (data: any) : void => {
     let payload = {
       username: data.username,
       email: data.email,
@@ -153,7 +153,7 @@ const Register: React.FC<RegisterProps> = () => {
                   </Form>
                 </div>
               </div>
-              <Link to="/login"><p>Already have an account ?</p></Link> 
+              <Link data-testid="login-element" to="/login"><p>Already have an account ?</p></Link> 
             </Card.Body>
           </Card>
         </Col>

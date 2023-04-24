@@ -6,14 +6,10 @@ import { useContext } from "react";
 import { Ctx } from "../context/Ctx";
 
 type LayoutProps = {
-  state: [];
   children: React.ReactNode;
-  // dispatch: React.Dispatch<ActionType>;
 };
 
-const Layout: React.FC<LayoutProps> = ({
-  children,
-}): JSX.Element => {
+const Layout  = ({children} : LayoutProps) => {
   const navigate = useNavigate()
   const userInfo : any = useContext(Ctx);  
   const userToken : string | null = localStorage.getItem('userToken');
@@ -22,7 +18,6 @@ const Layout: React.FC<LayoutProps> = ({
 
   if(userToken){
   const decoded = jwt_decode(userToken);
-  console.log(decoded)
   userInfo.user = decoded;
   }
   return (
@@ -45,7 +40,7 @@ const Layout: React.FC<LayoutProps> = ({
           </Nav>
           <Nav>
           {userToken ?
-        <><Nav.Link as={Link} to="/profile">Profile&nbsp; | </Nav.Link>
+        <><Nav.Link as={Link} to="/profile">Users Profile&nbsp; | </Nav.Link>
         <Nav.Link eventKey={2} to="/login" as={Link} onClick={()=>{
                  localStorage.removeItem("userToken")
                  navigate('/login')

@@ -4,9 +4,10 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    overflow: hidden;
   }
 
-  #root {
+  .home{
     background: url('../../client/src/assets/boy.jpg');
     background-position: center;
     background-repeat: no-repeat;

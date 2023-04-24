@@ -17,7 +17,7 @@ function App() {
  
   return (
     <>
-      <Layout/>
+      <Layout>
       <Routes>
         <Route path="/" element={<Home/>}></Route>
         <Route path="/aboutus" element={<About/>}></Route>
@@ -29,6 +29,7 @@ function App() {
         <Route path="/edit/:id" element={<PrivateRoute> <CreateBook/> </PrivateRoute>}></Route>
         <Route path="/profile" element={<PrivateRoute><Profile/></PrivateRoute>}></Route>
       </Routes>
+      </Layout>
     </>
   )
 }

@@ -16,15 +16,13 @@ interface BookProps {
   userId: string;
 }
 
-const CreateBook: React.FC<BookProps> = () => {
+const CreateBook = () => {
   const FormInput: BookProps = {
     _id: "",
     bookName: "",
     description: "",
     userId: "",
   };
-
-  const [formState, setFormState] = useState<BookProps[]>([FormInput]);
 
   const userInfo: any = useContext(Ctx);
   let userId = userInfo.user._id;
@@ -54,7 +52,6 @@ const CreateBook: React.FC<BookProps> = () => {
       description: updateData?.book.description,
     };
     reset(defaults);
-    console.log(updateData?.book);
   }, [updateData, reset]);
 
   const [
@@ -82,7 +79,7 @@ const CreateBook: React.FC<BookProps> = () => {
     }
   };
   if (errorUpdate) {
-    console.log(errorUpdate.message);
+    return <p><span data-testid="errorUpdated">{errorUpdate.message}</span></p>
   }
 
   //UPDATE_BOOK }
@@ -112,7 +109,7 @@ const CreateBook: React.FC<BookProps> = () => {
     }
   };
   if (bookError) {
-    console.log(bookError.message);
+    return <p><span data-testid="error">Error</span></p>
   }
   if (modifiedData || bookData) {
     navigate("/mybooks");
@@ -120,16 +117,22 @@ const CreateBook: React.FC<BookProps> = () => {
   return (
     <>
       <div className="page-bgimage">
+      {bookData && bookData?.createBook && (
+        <span role="alert" style={{ color: "#900" }}>
+              Book Created
+      </span>
+          
+          )}
         <Container className="mt-2">
           <Row>
             {bookError && (
-              <span className="d-block p-2 bg-danger text-white">
+              <span  data-testid="error" className="d-block p-2 bg-danger text-white">
                 {bookError.message}
               </span>
             )}
             <Col className="col-md-8-offset-md-2">
               <legend className="text-muted"> Create Book </legend>
-              <Form className="w-50"
+              <Form className="w-50" data-testid="form"
                 onSubmit={handleSubmit(
                   updateFlag ? updateTheBook : createNewUser
                 )}
@@ -156,7 +159,7 @@ const CreateBook: React.FC<BookProps> = () => {
                     )}
                   />
                 </Form.Group>
-                <Button variant="primary" type="submit" className="text-dark">
+                <Button variant="primary" name="formButton" type="submit" className="text-dark">
                   Submit
                 </Button>
               </Form>

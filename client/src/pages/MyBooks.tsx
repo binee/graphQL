@@ -11,11 +11,11 @@ interface BookProps {
     bookName:string,
     description:String,
     userId:string
-}
+}[]
 
-const MyBooks: React.FC<BookProps> = () => {
+const MyBooks = () => {
   const [modal, setModal] = useState<boolean>(false);
-  const [itemToDeleteId, setItemToDeleteId] = useState<boolean>(null);
+  const [itemToDeleteId, setItemToDeleteId] = useState<string | null>(null);
   const [show, setShow] = useState(false);
   const userInfo : any = useContext(Ctx);  
     let count = 1;
@@ -34,20 +34,12 @@ const MyBooks: React.FC<BookProps> = () => {
         console.log(data.userBook.length);
       }
 
-
-    //   const [login , {data, loading, error}] = useMutation(LOGIN_USER, {
-    //     onCompleted(data){
-    //       localStorage.setItem('userToken' , data?.loginUser.token )
-    //         navigate('/profile')
-    //     }
-    // })
       const [deleteUser, {loading: deleteLoading, error: deleteError}]= useMutation(DELETE_BOOK,{
              refetchQueries: [{ query: GET_BOOK_BY_USER, variables: { userId } }],
         });
         
 
       const deleteTheBook = () => {
-        console.log('sdfasf', itemToDeleteId)
         deleteUser({
           variables: {
             bookId: itemToDeleteId,
@@ -99,7 +91,7 @@ const MyBooks: React.FC<BookProps> = () => {
                     type="button"
                     name="edit"
                     className="m-auto"
-                    onClick={() => navigate(`/edit/${book._id}`)}
+                    onClick={(e) => navigate(`/edit/${book._id}`)}
                   >Edit</Button>&nbsp;
                   <Button
                     variant="primary"

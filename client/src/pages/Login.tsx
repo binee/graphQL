@@ -18,7 +18,7 @@ import { useMutation } from "@apollo/client";
 import Utility from "../utlis";
 import { LOGIN_USER } from "../graphqlOperation/mutation";
 
-const Login:React.FC<LoginProps> = () => {
+const Login = () => {
   const {
     control,
     handleSubmit,
@@ -37,10 +37,10 @@ const navigate = useNavigate();
         navigate('/')
     }
 })
-  const loginUser = (formPayload:any) => {
+  const loginUser = ({email, password}:LoginProps) => {
     let payload = {
-       email: formPayload.email,
-      password: formPayload.password,
+       email: email,
+      password: password,
     };
     const check = Utility.checkKeyValue(payload);
     if(check){
